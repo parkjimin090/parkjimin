@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--========== BOX ICONS ==========-->
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+    <!--========== CSS ==========-->
+    <link rel="stylesheet" href="styles.css">
+
+    <title>Park Jimin</title>
+    <link rel="icon" href="/images/pj-removebg-preview.png">
+
+    <style>
+        /* Prevent Google Translate banner from appearing */
+        .goog-te-banner-frame {
+            display: none !important;
+        }
+
+        body {
+            top: 0 !important;
+        }
+
+        /* Style the translator widget */
+        #translator {
+            position: fixed;
+            top: 70px; /* Position below the header */
+            right: 10px;
+            z-index: 1000;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #translator select,
+        #translator button {
+            margin: 5px;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!--========== TRANSLATOR WIDGET ==========-->
+    <div id="translator">
+        <label for="languageSelector">Translate:</label>
+        <select id="languageSelector">
+            <option value="">Select Language</option>
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="zh-CN">Chinese</option>
+        </select>
+        <button id="translateBtn">Translate</button>
+    </div>
+
+    <!--========== SCROLL TOP ==========-->
+    <a href="#" class="scrolltop" id="scroll-top">
+        <i class='bx bx-chevron-up scrolltop__icon'></i>
+    </a>
+
+    <!--========== HEADER ==========-->
+    <header class="l-header" id="header">
+        <nav class="nav bd-container">
+            <a href="#" class="nav__logo">Park Jimin</a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#home" class="nav__link active-link">Home</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
+                    <li class="nav__item"><a href="#menu" class="nav__link">Menu</a></li>
+                    <li class="nav__item"><a href="#contact" class="nav__link">Contact us</a></li>
+                    <li><i class='bx bx-moon change-theme' id="theme-button"></i></li>
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="l-main">
+        <!--========== HOME ==========-->
+        <section class="home" id="home">
+            <div class="home__container bd-container bd-grid">
+                <div class="home__data">
+                    <h1 class="home__title">Park Jimin</h1>
+                    <h2 class="home__subtitle">Welcome to my <br> Official Website.</h2>
+                    <a href="#" class="button">Explore Now</a>
+                </div>
+                <img src="/images/pal-removebg-preview.png" alt="" class="home__img">
+            </div>
+        </section>
+
+        <!-- Other Sections -->
+    </main>
+
+    <!--========== FOOTER ==========-->
+    <footer class="footer section bd-container">
+        <p class="footer__copy">&#169; All right reserved</p>
+    </footer>
+
+    <!--========== TRANSLATE SCRIPT ==========-->
+    <script type="text/javascript">
+        // Load Google Translate script dynamically
+        function loadGoogleTranslateScript() {
+            const script = document.createElement('script');
+            script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+            document.body.appendChild(script);
+        }
+
+        // Initialize Google Translate
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,es,fr,de,zh-CN',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                },
+                'translator'
+            );
+        }
+
+        // Translate Button Click Event
+        document.getElementById('translateBtn').addEventListener('click', () => {
+            const selectedLanguage = document.getElementById('languageSelector').value;
+            if (selectedLanguage) {
+                const iframe = document.querySelector('.goog-te-combo');
+                if (iframe) iframe.value = selectedLanguage;
+                const event = new Event('change');
+                iframe.dispatchEvent(event);
+            }
+        });
+
+        // Load the Google Translate script
+        loadGoogleTranslateScript();
+    </script>
+</body>
+</html>

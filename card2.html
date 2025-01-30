@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Card Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card-form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .card-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .form-group input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .form-group .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-group .btn:hover {
+            background-color: #0056b3;
+        }
+        .details-output {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            display: none;
+        }
+        .details-output h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-form">
+        <h2>Bank Card Details</h2>
+        <form id="bankCardForm">
+            <div class="form-group">
+                <label for="cardNumber">Card Number</label>
+                <input type="text" id="cardNumber" name="cardNumber" placeholder="Enter card number" required>
+            </div>
+            <div class="form-group">
+                <label for="cardHolder">Cardholder Name</label>
+                <input type="text" id="cardHolder" name="cardHolder" placeholder="Enter cardholder name" required>
+            </div>
+            <div class="form-group">
+                <label for="expiryDate">Expiry Date</label>
+                <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="password" id="cvv" name="cvv" placeholder="Enter CVV" required>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn" onclick="displayCardDetails()">Submit</button>
+            </div>
+        </form>
+        <div class="details-output" id="detailsOutput">
+            <h3>Card Details</h3>
+            <p><strong>Card Number:</strong> <span id="outputCardNumber"></span></p>
+            <p><strong>Cardholder Name:</strong> <span id="outputCardHolder"></span></p>
+            <p><strong>Expiry Date:</strong> <span id="outputExpiryDate"></span></p>
+            <p><strong>CVV:</strong> <span id="outputCVV"></span></p>
+        </div>
+    </div>
+
+    <script>
+        function displayCardDetails() {
+            const cardNumber = document.getElementById('cardNumber').value;
+            const cardHolder = document.getElementById('cardHolder').value;
+            const expiryDate = document.getElementById('expiryDate').value;
+            const cvv = document.getElementById('cvv').value;
+
+            if (cardNumber && cardHolder && expiryDate && cvv) {
+                // Display the details in the output div
+                document.getElementById('outputCardNumber').textContent = cardNumber;
+                document.getElementById('outputCardHolder').textContent = cardHolder;
+                document.getElementById('outputExpiryDate').textContent = expiryDate;
+                document.getElementById('outputCVV').textContent = cvv;
+
+                // Show the output section
+                document.getElementById('detailsOutput').style.display = 'block';
+
+                // Clear the form
+                document.getElementById('bankCardForm').reset();
+            } else {
+                alert('Please fill out all fields.');
+            }
+        }
+    </script>
+</body>
+</html>

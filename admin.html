@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f3f4f6;
+        }
+
+        /* Login form styling */
+        .login-container {
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 350px;
+            width: 100%;
+        }
+
+        .login-container h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .login-container button {
+            background: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .login-container button:hover {
+            background: #0056b3;
+        }
+
+        /* Admin panel styling */
+        .admin-panel {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .admin-panel h2 {
+            margin-bottom: 20px;
+        }
+
+        .admin-panel .balance {
+            font-size: 24px;
+            color: #28a745;
+            margin: 20px 0;
+        }
+
+        .admin-panel button {
+            background: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .admin-panel button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Form -->
+    <div class="login-container" id="loginForm">
+        <h1>Login</h1>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <h2>Welcome to the Admin Panel</h2>
+        <div class="balance" id="balance">Balance: $0.00</div>
+        <button onclick="fundMoney()">Fund $100</button>
+    </div>
+
+    <script>
+        // Login function
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Basic validation (example: admin credentials)
+            if (username === "admin" && password === "1234") {
+                // Hide login form and show admin panel
+                document.getElementById("loginForm").style.display = "none";
+                document.getElementById("adminPanel").style.display = "flex";
+            } else {
+                alert("Invalid username or password. Try again.");
+            }
+        }
+
+        // Fund money function
+        function fundMoney() {
+            const balanceElement = document.getElementById("balance");
+            let currentBalance = parseFloat(balanceElement.textContent.replace("Balance: $", ""));
+            currentBalance += 100; // Add $100 to the balance
+            balanceElement.textContent = `Balance: $${currentBalance.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
