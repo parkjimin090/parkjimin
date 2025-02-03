@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdrawal Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Withdrawal Form</h2>
+        <form id="withdrawalForm">
+            <div class="form-group">
+                <label for="accountNumber">Account Number</label>
+                <input type="text" id="accountNumber" required>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Withdraw</button>
+        </form>
+        <p id="message" style="color:red; margin-top:10px;"></p>
+    </div>
+
+    <script>
+        document.getElementById("withdrawalForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let accountNumber = document.getElementById("accountNumber").value;
+            let amount = document.getElementById("amount").value;
+            let password = document.getElementById("password").value;
+            let message = document.getElementById("message");
+
+            if (accountNumber === "" || amount === "" || password === "") {
+                message.textContent = "All fields are required!";
+                return;
+            }
+            
+            if (amount <= 0) {
+                message.textContent = "Amount must be greater than zero!";
+                return;
+            }
+
+            message.textContent = "Withdrawal successful!";
+            message.style.color = "green";
+            document.getElementById("withdrawalForm").reset();
+        });
+    </script>
+</body>
+</html>
